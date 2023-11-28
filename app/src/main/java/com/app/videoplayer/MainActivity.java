@@ -58,8 +58,7 @@ public static final String TAG="MainActivity";
         }
     }
 
-    public void aquireDuck(){
-
+    public void aquireAudioFocus(){
         AudioAttributes mPlaybackAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_MEDIA)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
@@ -89,10 +88,10 @@ public static final String TAG="MainActivity";
     protected void onPause() {
         super.onPause();
         player.pause();
-        abondanFocusReques();
+        abandonAudiofocus();
     }
 
-    private void abondanFocusReques(){
+    private void abandonAudiofocus(){
         audioManager.abandonAudioFocusRequest(focusRequest);
     }
 
@@ -106,10 +105,10 @@ public static final String TAG="MainActivity";
     private void playPauseVideo() {
         if(player.isPlaying()){
             player.pause();
-            abondanFocusReques();
+            abandonAudiofocus();
         }else{
             player.play();
-            aquireDuck();
+            aquireAudioFocus();
 
         }
     }
